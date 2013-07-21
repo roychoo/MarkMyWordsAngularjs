@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MarkMyWordsApp', [])
+angular.module('MarkMyWordsApp', ['markdown'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
