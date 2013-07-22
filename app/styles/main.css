@@ -6339,3 +6339,24 @@ div.subnav-fixed {
 .hero-unit h6 {
   margin: 13px 0;
 }
+#preview {
+  height: 100%;
+}
+#text-input {
+  width: 100%;
+  height: 100%;
+}
+html,
+body,
+.container-fluid,
+.row-fluid {
+  height: 100%;
+}
+.row-fluid .span11,
+.row-fluid .span11 .span6 {
+  height: 100%;
+}
+body {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}

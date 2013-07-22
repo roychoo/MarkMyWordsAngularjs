@@ -7,7 +7,13 @@ angular.module('markdown', []).
       replace: true,
       template: '<div class="span11"><div class="span6"><textarea id="text-input">Type **Markdown** here.</textarea></div> <div class="span5" id="preview"> </div></div>',
       link: function (scope, element, attrs) {
-       
+      	var textinput = $('#text-input');
+      	console.log(textinput);
+      	var preview = $('#preview');
+       	textinput.on('input', function(){
+       		console.log('input' + this.value);
+       		preview.html(markdown.toHTML(this.value));
+       	});
       }
     };
   });
