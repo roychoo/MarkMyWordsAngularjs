@@ -10,9 +10,14 @@ angular.module('markdown', []).
       	var textinput = $('#text-input');
       	console.log(textinput);
       	var preview = $('#preview');
-       	textinput.on('input', function(){
-       		console.log('input' + this.value);
+       	textinput.on('input asdasdasd ', function(){
+       		console.log('input' + this.value.toString());
+          var numberOfLineBreaks = (this.value.match(/\n/g)||[]).length;
+          console.log(numberOfLineBreaks);
+          var test = this.value;
+          console.log(test.toString());
        		preview.html(markdown.toHTML(this.value));
+          console.log(markdown.toHTML(this.value));
        	});
       }
     };
