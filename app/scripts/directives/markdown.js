@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('markdown', []).
-  directive('markdown', function () {
+  directive('markdown', ['$compile', 'tagService',function ($compile, tagService) {
     return {
       restrict: 'E',
       replace: true,
       scope: true,
-      template: '<div class="span11"><div class="span6"><textarea id="text-input">Type **Markdown** here.</textarea></div> <div class="span5" id="preview"> </div></div>',
+      templateUrl: 'views/subviews/markdown.html',
       link: function (scope, element, attrs) {
       	var textinput = $('#text-input');
       //	console.log(textinput);
@@ -21,7 +21,12 @@ angular.module('markdown', []).
          // console.log(markdown.toHTML(this.value));
           scope.markdown.text = this.value;
           console.log(scope.markdown.text);
+           
+           console.log(element.contents());
        	});
+        $compile(element.contents())(scope);  
+        var tag = [{"id":1}];
+        tagService.setProperty(tag);
       }
     };
-  });
+  }]);

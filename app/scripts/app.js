@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MarkMyWordsApp', ['markdown'])
+angular.module('MarkMyWordsApp', ['markdown', 'tagService'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

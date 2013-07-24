@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('MarkMyWordsApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', 'tagService', function ($scope, tagService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.tags = tagService.getProperty();
     $scope.markdown = { text: 'hello'};
     var obj = {};
-   
     $scope.click = function() {
     	console.log($scope.markdown);
     	$.ajax({
@@ -20,4 +20,4 @@ angular.module('MarkMyWordsApp')
 		  alert( "Data Saved: " + msg );
 		});
     }
-  });
+  }]);

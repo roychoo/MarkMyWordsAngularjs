@@ -1,11 +1,21 @@
  <div class="row-fluid">
     <div class="span1">
-        this the menu
+    	<div class="sidebar">
+    		<div class="newNote btn">
+	    		<i class="icon-pencil icon-4x"></i>
+	    		<p>Add</p>
+	    	</div>
+	    	<div class="dd">
+			    <ol class="dd-list">
+			        <li class="dd-item" data-id="{{tag.id}}" ng-repeat="tag in tags">
+			            <div class="dd-handle">Item 1 {{tag.id}}</div>
+			        </li>
+
+			    </ol>
+			</div>
+    	</div>
     </div>
     <markdown>
         
     </markdown>
-</div>
-<div class="row-fluid">
-	<button ng-click="click()" value="test">test</button>
 </div>
