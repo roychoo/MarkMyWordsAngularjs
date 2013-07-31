@@ -1,44 +1,28 @@
 
-@import "bootstrap/bootstrap.less";
-@import "bootstrap/responsive.less";
-@import "variables.less";
-@import "bootswatch.less";
+@import "../../bower_components/bootstrap/less/bootstrap.less";
 
-#preview {
-	height: 100%;
-}
-
-#markdownForm, .sidebar { 
-	width: 100%;
-	height: 80%;
-	margin-top: 80px;
-}
-html, body, .container-fluid, .row-fluid {
-	height: 100%;
-}
-
-.row-fluid .span11,  .row-fluid .span11 .span6{
-	height:100%;
-}
-.sidebar {
-	text-align: center;
-}
-.newNote {
-	text-align: center;
-	width: 100%;
-}
-
-#markdownForm .control-group .controls {
-	margin-left: 0;
-}
-
-#markdownForm input, #markdownForm textarea {
-	width: 100%;
-}
-
-#markdownTextarea, #markdownTextarea .controls {
-	height: 90%;
-}
-#text-input {
-	height: 100%;
+@media (min-device-width: 320px) and (max-device-width: 480px) {
+	body {
+		padding-top: 60px;
+	}
+	#sidePanel {
+		width: 0;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+	}
+	label {
+		display: none;
+	}
+	#markdown-form {
+		padding: 0 10px 0 10px;
+	}
+	.left-arrow {
+		position: fixed;
+		width:15px;
+		height:50px;
+		border: 1px solid #ff0000;
+		top: 50%;
+		left: 0;
+	}
 }

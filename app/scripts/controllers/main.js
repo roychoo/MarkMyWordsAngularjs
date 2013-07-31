@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('MarkMyWordsApp')
-  .controller('MainCtrl', ['$scope', 'tagService', function ($scope, tagService) {
+  .controller('MainCtrl', ['$scope', 'tagService', '$location', function ($scope, tagService, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
