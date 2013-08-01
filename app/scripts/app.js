@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MarkMyWordsApp', ['markdown', 'tagService'])
+angular.module('MarkMyWordsApp', ['markdown', 'tagService', 'expand', 'tags'])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix = '!';

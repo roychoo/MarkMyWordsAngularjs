@@ -1,15 +1,20 @@
 
 @import "../../bower_components/bootstrap/less/bootstrap.less";
-
-@media (min-device-width: 320px) and (max-device-width: 480px) {
+@import "../../bower_components/font-awesome/less/font-awesome.less";
+@FontAwesomePath:   "../../bower_components/font-awesome/font";
+@media (min-width: 320px) and (max-width: 480px) {
 	body {
 		padding-top: 60px;
 	}
 	#sidePanel {
-		width: 0;
 		overflow: hidden;
 		padding: 0;
-		position: absolute;
+		position: fixed;		
+	}
+	#preview {
+		overflow: hidden;
+		padding: 0;
+		position: fixed;
 	}
 	label {
 		display: none;
@@ -19,10 +24,31 @@
 	}
 	.left-arrow {
 		position: fixed;
-		width:15px;
-		height:50px;
-		border: 1px solid #ff0000;
 		top: 50%;
 		left: 0;
+		transition: all 0.3s ease;
 	}
+	.right-arrow {
+		position: fixed;
+		top: 50%;
+		right: 0;
+		transition: all 0.3s ease;
+	}
+	.container > .row {
+		overflow: hidden;
+	}
+	#markdown {
+		transition: all 0.3s ease;
+	}
+	.navigation {
+  		transition: all 0.3s ease;
+	}
+	#sidePanel input {
+		width: 60px;
+	}
+}
+ul
+{
+    list-style-type: none;
+    padding-left: 20px;
 }

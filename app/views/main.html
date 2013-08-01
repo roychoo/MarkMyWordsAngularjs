@@ -1,10 +1,15 @@
  <div class="row">
  	 
- 	<div id="sidePanel" class="col-lg-3">
+ 	<div id="sidePanel" class="col-lg-3 col-9">
  		<p>this is the side panel</p>
+ 		<tags></tags>
  	</div>
- 	<div id="markdown" class="col-lg-5">
- 		<div class="left-arrow">
+ 	<div id="markdown" class="col-lg-5 col-12">
+ 		<div class="left-arrow" expand="sidePanel" expand-direction="left">
+ 			<i class="icon-chevron-sign-right icon-2x"></i>
+ 		</div>
+ 		<div class="right-arrow" expand="preview" expand-direction="right">
+ 			<i class="icon-chevron-sign-left icon-2x"></i>
  		</div>
  		<form id="markdown-form">
  			<fieldset>
@@ -23,6 +28,7 @@
  			</fieldset>
  		</form>
  	</div>
- 	<div id="preview" class="col-lg-4">
+ 	<div id="preview" class="col-lg-4 col-9">
+ 		<p> this is a preview panel</p>
  	</div>
 </div>
