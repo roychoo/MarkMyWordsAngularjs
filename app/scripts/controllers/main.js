@@ -7,7 +7,7 @@ angular.module('MarkMyWordsApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.tags = tagService.getProperty();
+//    $scope.tags = tagService.getProperty();
     $scope.markdown = { text: 'hello'};
     var obj = {};
     $scope.click = function() {

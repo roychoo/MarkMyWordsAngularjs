@@ -12,4 +12,6 @@ angular.module('MarkMyWordsApp', ['markdown', 'tagService', 'expand', 'tags', 't
       .otherwise({
         redirectTo: '/'
       });
-  })
+  }).config(function(tagServiceProvider) {
+  	tagServiceProvider.getTags();
+  });

@@ -1,12 +1,14 @@
 angular.module('tagService', [])
-    .service('tagService', function () {
-        var tag = [{"id":1}];
-        return {
-            getProperty: function () {
-                return tag;
-            },
-            setProperty: function(value) {
-                tag = value;
-            }
-        };
-    });
+    .provider('tagService', {
+    tag: null,
+    getTags: function() {},
+    $get: function($http) {
+        $http.get('http://localhost:3000/test').success(function(results) {
+            console.log('hello world');
+            console.log(results);
+            tag = results;
+
+            return tag;
+        });
+    }
+});

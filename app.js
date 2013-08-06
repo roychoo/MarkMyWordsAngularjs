@@ -5,11 +5,13 @@ var app = express();
 var tagSchema = mongoose.Schema({
     _id: String,
     path: String,
+    tag: String,
     personid: String
 });
 var Tag = mongoose.model('Tag', tagSchema, 'tags');
+var singleLevelTag = [];
 app.use(express.bodyParser());
-app.use("/app", express.static(__dirname + '/app'));
+app.use("/", express.static(__dirname + '/app'));
 app.get('/test', function(req, res) {
     mongoose.connect(mongoUri);
     mongoose.connection.on("open", function() {
@@ -21,52 +23,82 @@ app.get('/test', function(req, res) {
         }).sort({
             path: 1
         }).execFind(function(err, results) {
+            console.log('====================== results =============');
             console.log(results);
+            console.log('================= results end ==================');
             //var tags = JSON.parse(results);
-            var output = [];
-            console.log(results.length);
-            for (var i = 0; i < results.length; i++) {
-                console.log(results[i]._id + " IDDDDDDDDDDDDDDDDD");
-                var chain = [];
-                if (results[i].path !== null) {
-                    var chain = results[i].path.split(",");
+            console.log("====================================");
+
+            function notEmptyString(element, index, array) {
+                return (element != "");
+            }
+
+            function getPath(tag) {
+                if (tag.path !== null) {
+                    var paths = tag.path.split(',').filter(notEmptyString);
+                    var pathName;
+                    for (var i = 0, l = paths.length; i < l; i++) {
+                        var v = paths[i];
+                        for (var j = 0; j < results.length; j++) {
+                            if (paths[i] === results[j]._id) {
+                                if (pathName === undefined) {
+                                    pathName = results[j].tag;
+                                } else {
+                                    pathName += ' -> ' + results[j].tag;
+                                }
+                                break;
+                            }
+                        }
+
+
+                    }
+                } else {
+                    pathName = "";
                 }
-                var currentNode = output;
-                for (var j = 0; j < chain.length; j++) {
+                item = {
+                    tag: tag.tag,
+                    path: pathName
+                };
+                singleLevelTag.push(item);
+                return pathName;
+            }
 
-
-                    var wantedNode = chain[j];
-
-                    var lastNode = currentNode;
-                    for (var k = 0; k < currentNode.length; k++) {
-
-                        console.log("==============current node=====");
-                        console.log(currentNode[k]);
-                        if (currentNode[k]._id == wantedNode) {
-                            console.log("==============equality node=====");
-                            console.log(currentNode[k]);
-                            currentNode = currentNode[k].children;
-                            break;
+            var output = [];
+            var input = results;
+            console.log(results[0]._id + ' tag');
+            for (var i = 0; i < input.length; i++) {
+                console.log('tag ' + input[i].path);
+                if (input[i].path !== null) {
+                    var chain = input[i].path.split(",").filter(notEmptyString);
+                    var currentNode = output;
+                    for (var j = 0; j < chain.length; j++) {
+                        for (var k = 0; k < currentNode.length; k++) {
+                            if (chain[j] === currentNode[k]._id && chain.length == j + 1) {
+                                var n1 = {
+                                    _id: input[i]._id,
+                                    tag: input[i].tag,
+                                    children: [],
+                                    path: getPath(input[i])
+                                }
+                                currentNode[k].children.push(n1);
+                            } else if (chain[j] === currentNode[k]._id) {
+                                currentNode = currentNode[k].children;
+                                break;
+                            }
                         }
                     }
-                    // If we couldn't find an item in this list of children
-                    // that has the right name, create one:
-                    if (lastNode == currentNode) {
-
-                        var newNode = currentNode[k] = {
-                            _id: wantedNode,
-                            children: []
-                        };
-                        currentNode = newNode.children;
-                        console.log("==============creatibng node=====");
-                        console.log(newNode);
+                } else {
+                    var nn = {
+                        _id: input[i]._id,
+                        tag: input[i].tag,
+                        children: [],
+			path: getPath(input[i])
                     }
-
+                    output.push(nn);
                 }
-
             }
-            console.log("====================================");
             console.log("output: %j", output);
+            console.log("tag: %j", singleLevelTag);
         });
     });
 
